@@ -1,5 +1,4 @@
 enum PrefsKey {
-  savedAppVersion,
-  dateUpdateAppears,
-  isShowPermissionNotification
+  isFirstOpenApp,
+  isShowPermissionNotification,
 }

@@ -7,10 +7,16 @@ class SearchPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _SearchPageState();
-  
 }
 
 class _SearchPageState extends State<SearchPage> {
+
+  @override
+  void initState() {
+    debugPrint("search page");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();

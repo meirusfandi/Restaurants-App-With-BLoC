@@ -16,13 +16,20 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: HomeRoute.page),
-    AutoRoute(page: DashboardRoute.page),
-    AutoRoute(page: DetailRoute.page),
-    AutoRoute(page: FavoriteRoute.page),
-    AutoRoute(page: ProfileRoute.page),
-    AutoRoute(page: SearchRoute.page),
-    AutoRoute(page: SplashRoute.page, initial: true),
-    AutoRoute(page: WelcomeRoute.page),
+    AutoRoute(page: SplashRoute.page, path: '/'),
+    AutoRoute(page: WelcomeRoute.page, path: '/welcome-screen'),
+    AutoRoute(page: FavoriteRoute.page, path: '/favorite-screen'),
+    AutoRoute(page: DetailRoute.page, path: '/detail-screen'),
+    CustomRoute(
+      children: [
+        AutoRoute(page: DashboardRoute.page, path: 'dashboard-screen'),
+        AutoRoute(page: SearchRoute.page, path: 'search-screen'),
+        AutoRoute(page: ProfileRoute.page, path: 'profile-screen'),
+      ],
+      page: HomeRoute.page,
+      path: '/home-screen',
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      durationInMilliseconds: 300,
+    ),
   ];
 }

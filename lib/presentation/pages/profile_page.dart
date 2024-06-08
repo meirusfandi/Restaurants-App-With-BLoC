@@ -11,6 +11,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  @override
+  void initState() {
+    debugPrint("profile page");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();

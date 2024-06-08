@@ -12,6 +12,13 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+
+  @override
+  void initState() {
+    debugPrint("detail page");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();

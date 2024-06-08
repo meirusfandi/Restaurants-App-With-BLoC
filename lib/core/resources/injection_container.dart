@@ -7,7 +7,12 @@ import 'package:recipe_app_bloc/data/datasource/recipe_datasource.dart';
 import 'package:recipe_app_bloc/data/datasource/recipe_datasource_impl.dart';
 import 'package:recipe_app_bloc/data/repositories/recipe_repository_impl.dart';
 import 'package:recipe_app_bloc/domain/repository/recipe_repository.dart';
+import 'package:recipe_app_bloc/domain/usecase/do_add_review.dart';
+import 'package:recipe_app_bloc/domain/usecase/get_detail_recipe.dart';
+import 'package:recipe_app_bloc/domain/usecase/get_list_recipe.dart';
+import 'package:recipe_app_bloc/domain/usecase/search_recipe.dart';
 import 'package:recipe_app_bloc/generated/l10n.dart';
+import 'package:recipe_app_bloc/presentation/bloc/home_bloc.dart';
 
 final sl = GetIt.I;
 const channel = MethodChannel('com.meirusfandi/methodchannel');
@@ -23,13 +28,15 @@ Future<void> init() async {
   sl.registerLazySingleton<RecipeDatasource>(() => RecipeDatasourceImpl(restClient: sl()));
 
   // Repository
-  sl.registerLazySingleton<RecipeRepository>(() => RecipeRepositoryImpl());
+  sl.registerLazySingleton<RecipeRepository>(() => RecipeRepositoryImpl(sl()));
 
   // Usecase
-  // sl.registerLazySingleton(() => DoLogin(loginRepository: sl()));
+  sl.registerLazySingleton(() => DoAddReview(sl()));
+  sl.registerLazySingleton(() => SearchRecipe(sl()));
+  sl.registerLazySingleton(() => GetListRecipe(sl()));
+  sl.registerLazySingleton(() => GetDetailRecipe(sl()));
 
   //bloc
-  // sl.registerLazySingleton<LoginBloc>(() => LoginBloc(doLogin: sl(), doLoginV2: sl()));
-  
+  sl.registerLazySingleton<HomeBloc>(() => HomeBloc(getListRecipe: sl()));
 }
 

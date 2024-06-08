@@ -34,6 +34,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     version = packageInfo.version;
     buildNumber = packageInfo.buildNumber;
+    prefInstance.setString(PrefsKey.versionApp.name, version);
+    prefInstance.setString(PrefsKey.buildNumber.name, buildNumber);
 
     final isFirstOpenApp = prefHelper.getIsFirstOpen ?? true;
     if (isFirstOpenApp) {

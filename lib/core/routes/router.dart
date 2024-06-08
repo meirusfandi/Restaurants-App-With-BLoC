@@ -6,6 +6,7 @@ import 'package:recipe_app_bloc/presentation/pages/favorite_page.dart';
 import 'package:recipe_app_bloc/presentation/pages/home_page.dart';
 import 'package:recipe_app_bloc/presentation/pages/profile_page.dart';
 import 'package:recipe_app_bloc/presentation/pages/search_page.dart';
+import 'package:recipe_app_bloc/presentation/pages/setting_page.dart';
 import 'package:recipe_app_bloc/presentation/pages/splash_page.dart';
 import 'package:recipe_app_bloc/presentation/pages/welcome_page.dart';
 
@@ -20,6 +21,7 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: WelcomeRoute.page, path: '/welcome-screen'),
     AutoRoute(page: FavoriteRoute.page, path: '/favorite-screen'),
     AutoRoute(page: DetailRoute.page, path: '/detail-screen'),
+    AutoRoute(page: SettingRoute.page, path: '/setting-screen'),
     CustomRoute(
       children: [
         AutoRoute(page: DashboardRoute.page, path: 'dashboard-screen'),

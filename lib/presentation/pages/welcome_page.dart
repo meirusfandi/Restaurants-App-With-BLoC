@@ -105,6 +105,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 onTap: () {
                   setState(() {
                     if (_currentPage == 2) {
+                      debugPrint("get started click");
                       context.router.replaceAll([const HomeRoute()]);
                     } else {
                       _currentPage++;

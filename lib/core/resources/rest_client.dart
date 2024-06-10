@@ -20,7 +20,7 @@ abstract class RestClient {
   Future<SearchRecipeResponse> searchRestaurants(@Query("q") String query);
 
   @GET('detail/{id}')
-  Future<DetailRecipeDataResponse> getDetailRestaurants(@Path('id') String idResto);
+  Future<DetailRecipeResponse> getDetailRestaurants(@Path('id') String idResto);
 
   @POST('review')
   Future<ReviewResponse> submitReview(@Body() ReviewRequest request);

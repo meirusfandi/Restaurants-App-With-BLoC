@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:recipe_app_bloc/core/resources/rest_client.dart';
 import 'package:recipe_app_bloc/core/utils/constants.dart';
@@ -12,16 +10,18 @@ import 'package:recipe_app_bloc/domain/usecase/get_detail_recipe.dart';
 import 'package:recipe_app_bloc/domain/usecase/get_list_recipe.dart';
 import 'package:recipe_app_bloc/domain/usecase/search_recipe.dart';
 import 'package:recipe_app_bloc/generated/l10n.dart';
+import 'package:recipe_app_bloc/presentation/bloc/detail_bloc.dart';
 import 'package:recipe_app_bloc/presentation/bloc/home_bloc.dart';
+import 'package:recipe_app_bloc/presentation/bloc/search_bloc.dart';
 
 final sl = GetIt.I;
 const channel = MethodChannel('com.meirusfandi/methodchannel');
 
 Future<void> init() async {
-  final Dio _dio = Dio();
+  final Dio dio = Dio();
   
   sl.registerLazySingleton(() => S());
-  sl.registerSingleton<RestClient>(RestClient(_dio, baseUrl: apiServer));
+  sl.registerSingleton<RestClient>(RestClient(dio, baseUrl: apiServer));
   sl.registerLazySingleton(() => const AppLocalizationDelegate());
   
   //Datasource
@@ -38,5 +38,7 @@ Future<void> init() async {
 
   //bloc
   sl.registerLazySingleton<HomeBloc>(() => HomeBloc(getListRecipe: sl()));
+  sl.registerLazySingleton<DetailBloc>(() => DetailBloc(getDetailRecipe: sl()));
+  sl.registerLazySingleton<SearchBloc>(() => SearchBloc(searchRecipe: sl()));
 }
 

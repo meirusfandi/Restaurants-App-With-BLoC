@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:recipe_app_bloc/core/resources/rest_client.dart';
 import 'package:recipe_app_bloc/data/datasource/recipe_datasource.dart';
@@ -16,9 +18,9 @@ class RecipeDatasourceImpl implements RecipeDatasource {
   Future<DetailRecipeResponse> getDetailRecipe(String id) async {
     try {
       final response = await restClient.getDetailRestaurants(id);
-      final result = DetailRecipeResponse.fromJson(response.toJson());
-      return Future.value(result);
-    } on DioException catch (_) {
+      return Future.value(response);
+    } on DioException catch (e) {
+      log('error: $e');
       rethrow;
     }
   }
@@ -27,9 +29,9 @@ class RecipeDatasourceImpl implements RecipeDatasource {
   Future<ListRecipeResponse> getListRecipe() async {
     try {
       final response = await restClient.getRestaurants();
-      final result = ListRecipeResponse.fromJson(response.toJson());
-      return Future.value(result);
-    } on DioException catch (_) {
+      return Future.value(response);
+    } on DioException catch (e) {
+      log('error: $e');
       rethrow;
     }
   }
@@ -38,9 +40,9 @@ class RecipeDatasourceImpl implements RecipeDatasource {
   Future<ReviewResponse> createReview(ReviewRequest request) async {
     try {
       final response = await restClient.submitReview(request);
-      final result = ReviewResponse.fromJson(response.toJson());
-      return Future.value(result);
-    } on DioException catch (_) {
+      return Future.value(response);
+    } on DioException catch (e) {
+      log('error: $e');
       rethrow;
     }
   }
@@ -49,9 +51,9 @@ class RecipeDatasourceImpl implements RecipeDatasource {
   Future<SearchRecipeResponse> searchRecipe(String query) async {
     try {
       final response = await restClient.searchRestaurants(query);
-      final result = SearchRecipeResponse.fromJson(response.toJson());
-      return Future.value(result);
-    } on DioException catch (_) {
+      return Future.value(response);
+    } on DioException catch (e) {
+      log('error: $e');
       rethrow;
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:recipe_app_bloc/data/datasource/recipe_datasource.dart';
 import 'package:recipe_app_bloc/data/model/detail_recipe_response.dart';
 import 'package:recipe_app_bloc/data/model/list_recipe_response.dart';
@@ -15,24 +17,28 @@ class RecipeRepositoryImpl implements RecipeRepository {
   @override
   Future<ReviewResponse> createReview(AddReviewParams params) async {
     final result = await _datasource.createReview(ReviewRequest(id: params.id, name: params.name, review: params.review));
+    log('data: $result');
     return result;
   }
 
   @override
   Future<DetailRecipeResponse> detailRecipe(String id) async {
     final result = await _datasource.getDetailRecipe(id);
+    log('data: $result');
     return result;
   }
 
   @override
   Future<ListRecipeResponse> getListData() async {
     final result = await _datasource.getListRecipe();
+    log('data: $result');
     return result;
   }
 
   @override
   Future<SearchRecipeResponse> searchRecipeData(String query) async {
     final result = await _datasource.searchRecipe(query);
+    log('data: $result');
     return result;
   }
   

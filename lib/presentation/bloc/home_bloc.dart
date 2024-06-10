@@ -1,5 +1,6 @@
 import 'package:recipe_app_bloc/domain/entity/list_recipe_entity.dart';
 import 'package:recipe_app_bloc/domain/usecase/get_list_recipe.dart';
+import 'package:recipe_app_bloc/presentation/bloc/detail_bloc.dart';
 import 'package:recipe_app_bloc/presentation/bloc/home_bloc.dart';
 export 'dart:async';
 export 'package:dio/dio.dart';
@@ -22,17 +23,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       emit(const HomeState.noValue());
       final data = getListRecipe();
-      data.then((value) {
+      await data.then((value) {
         if (value.error) {
           emit(state.copyWith(isloading: false, errorMessage: value.message));
         } else {
           emit(state.copyWith(
-            isloading: false,
-            errorMessage: value.message,
-            listRecipeEntity: value
+              isloading: false,
+              errorMessage: value.message,
+              listRecipeEntity: value
           ));
         }
       });
+    } on DioException catch (e){
+      emit(state.copyWith(isloading: false, errorMessage: e.toString()));
     } catch (e) {
       emit(state.copyWith(isloading: false, errorMessage: e.toString()));
     }

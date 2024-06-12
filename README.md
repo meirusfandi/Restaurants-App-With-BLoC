@@ -1,6 +1,6 @@
-# recipe_app_bloc
+# Restaurants-App-With-BLoC
 
-A Recipe Apps Flutter for Submission
+A Restaurants Apps Flutter for Submission
 
 ## Getting Started
 

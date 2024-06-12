@@ -64,7 +64,7 @@ class _DetailPageState extends State<DetailPage> {
                         Row(
                           children: [
                             Icon(Icons.star, color: ContentColor.warningColor).rightPadded(8),
-                            Text(state.detailRecipeEntity?.restaurant.city ?? '', style: GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.w500, color: ContentColor.greyColor)),
+                            Text(state.detailRecipeEntity?.restaurant.rating.toString() ?? '', style: GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.w500, color: ContentColor.greyColor)),
                           ],
                         ).horizontalPadded(),
                         const Divider().horizontalPadded().verticalPadded(8),

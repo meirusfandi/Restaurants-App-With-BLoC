@@ -39,10 +39,14 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
 
     final isFirstOpenApp = prefHelper.getIsFirstOpen ?? true;
     if (isFirstOpenApp) {
-      context.router.replaceAll([const WelcomeRoute()]);
+      if (mounted) {
+        context.router.replaceAll([const WelcomeRoute()]);
+      }
       prefInstance.setBool(PrefsKey.isFirstOpenApp.name, false);
     } else {
-      context.router.replaceAll([const HomeRoute()]);
+      if (mounted) {
+        context.router.replaceAll([const HomeRoute()]);
+      }
     }
   }
 
